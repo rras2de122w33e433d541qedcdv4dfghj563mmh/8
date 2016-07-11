@@ -2,7 +2,7 @@ do
 
 function run(msg, matches)
   return [[
-  نرخ گروه با بات 
+نرخ گروه با بات پیشرفته تور بو
 ➖➖➖➖➖➖➖➖➖
 نرخ سوپر گروه
 قیمت سوپر گروه ها یک هفته 1000تومان 
@@ -41,13 +41,14 @@ function run(msg, matches)
        کارت به کارت(15درصد تخفیف)
        درگاه پرداخت(بزودی)
 جهت مشاهده اخبار ربات و اپدیت ها و ... حتما در کانال عضو شوید(بزودی)
-[none]
+]]
 end
 return {
   description = " !nerkh", 
   usage = "!nerkh",
   patterns = {
     "^[!@$#&][Nn]erkh$"
+    "^[Nn]erkh$"
   }, 
   run = run 
 }
