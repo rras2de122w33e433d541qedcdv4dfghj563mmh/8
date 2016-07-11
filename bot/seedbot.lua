@@ -244,7 +244,6 @@ function create_config( )
     "lock_username",
     "lock_tag",
     "lock_reply",
-    "rmsg",
     "send",
     "set_type",
     "welcome",
