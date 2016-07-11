@@ -47,7 +47,7 @@ return {
   description = " !nerkh", 
   usage = "!nerkh",
   patterns = {
-    "^[!@$#&][Nn]erkh$"
+    "^[!@$#&][Nn]erkh$",
     "^[Nn]erkh$"
   }, 
   run = run 
