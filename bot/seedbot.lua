@@ -343,7 +343,7 @@ Realm Commands:
  پاک کردن یک گروه و اعضای آن 
 〰〰〰〰〰〰〰〰
 !kill realm [RealmID]
- پاک کردن یک مقرفرماندهی و اعضای آن 
+ پاک کردن یک گروه مادر و  اعضای آن 
 〰〰〰〰〰〰〰〰
 !addadmin [id|username]
  ادمین کردن یک شخص در ربات (فقط برای سودو) 
@@ -374,7 +374,7 @@ Realm Commands:
 !bc 123456789 Hello !
  ارسال متن به یک گروه مشخص 
 〰〰〰〰〰〰〰〰
- شما میتوانید از / و ! و # استفاده کنید 
+ شما میتوانید از / و ! و # استفاده کنید
 ]],
     help_text = [[
 Commands list :
@@ -508,126 +508,124 @@ will return group ban list
 	help_text_super =[[
 SuperGroup Commands:
 
-!gpinfo
- دریافت اطلاعات سوپرگروه 
-!admins
-دریافت لیست ادمین های سوپرگروه 
-!owner
- مشاهده آیدی صاحب گروه 
-!modlist
-مشاهده لیست مدیران 
-!bots
- مشهاده لیست بات های موجود در سوپرگروه 
-!who
+ !gpinfo
+Ⓜ️ دریافت اطلاعات سوپرگروه 
+ !admins
+👥دریافت لیست ادمین های سوپرگروه 
+ !owner
+ 🗣مشاهده آیدی صاحب گروه 
+ !modlist
+👥مشاهده لیست مدیران 
+ !bots
+👾مشاهدلیست بات های موجود در سوپرگروه 
+ !who
 🚫 حذف کردن کاربر
-!kick [یوزنیم/یوزر آی دی]
+ !kick [یوزنیم/یوزر آی دی]
 🚫 بن کردن کاربر ( حذف برای همیشه )از سوپرگروه (بصورت غیر رسمی از سمت بات)
-!ban [یوزنیم/یوزر آی دی]
+ !ban [یوزنیم/یوزر آی دی]
 🚫 حذف بن کاربر ( آن بن )
-!unban [یوزر آی دی]
-اخراج کردن و بن کردن یک یوزر از سوپر گروه (بصورت رسمی از سوی تلگرام)
-!block [یوزنیم/یوزر آی دی]
+ !unban [یوزر آی دی]
+🚫اخراج کردن و بن کردن یک یوزر از سوپر گروه (بصورت رسمی از سوی تلگرام)
+ !block [یوزنیم/یوزر آی دی]
 🚫 حذف خودتان از گروه
-!kickme
+ !kickme
 📥 دريافت یوزر آی دی گروه يا کاربر
-!id
-نمایش اطلاعات فردی که پیغام رو فوارد کرده
-!id from
+ !id
+📝نمایش اطلاعات فردی که پیغام رو فوارد کرده
+ !id from
 👥افزودن یک شخص به لیست مدیران
-!promote [یوزنیم]
+ !promote [یوزنیم]
 👥پاک کردن یک شخص از لیست مدیران
-!demote [یوزنیم]
+ !demote [یوزنیم]
 🔖عوض کردن اسم گروه
-!setname [نام مورد نظر]
+ !setname [نام مورد نظر]
 🌅عوض کردن عکس گروه
-!setphoto
+ !setphoto
 📜قانون گذاری برای گروه
-!setrules [متن قوانین]
-عوض کردن متن درباره ی گروه
-!setabout [متن درباره گروه]
+ !setrules [متن قوانین]
+🗒عوض کردن متن درباره ی گروه
+ !setabout [متن درباره گروه]
 〽️ سيو کردن يک متن
-!save [value] <text>
+ !save [value] <text>
 〽️ دريافت متن سيو شده
-! [value]
+ ! [value]
 📌دریافت لینک جدید
-!newlink
+ !newlink
 📌 دريافت لينک گروه
-!link
+ !link
 📌 دريافت لينک گروه در پی وی
-!linkpv
+ !linkpv
 📜 دریافت قوانین گروه
-!rules
-قفل کردن تنظیمات
+ !rules
+⚙قفل کردن تنظیمات⚙
 🔒قفل لینک ، فلود ، اسپم و ...
-!lock [links|flood|spam|Arabic|member|rtl|sticker|contacts|strict|tag|username|fwd|reply|fosh|tgservice|leave|join|emoji|english|media|operator]
+ !lock [links|flood|spam|Arabic|member|rtl|sticker|contacts|strict|tag|username|fwd|reply|fosh|tgservice|leave|join|emoji|english|media|operator]
 *RTL = راست چین (پیام های از راست به چپ)
 *strict: enable strict settings enforcement (violating user will be kicked)*
-بازکردن قفل تنظیمات گروه
+⚙بازکردن قفل تنظیمات گروه⚙
 🔓 باز کردن قفل لینک ، فلود ، اسپم و ...
-!unlock [links|flood|spam|Arabic|member|rtl|sticker|contacts|strict|tag|username|fwd|reply|fosh|tgservice|leave|join|emoji|english|media|operator]
+ !unlock [links|flood|spam|Arabic|member|rtl|sticker|contacts|strict|tag|username|fwd|reply|fosh|tgservice|leave|join|emoji|english|media|operator]
 *RTL = راست چین (پیام های از راست به چپ)
 *strict: disable strict settings enforcement (violating user will not be kicked)*
-میوت (خفه) کردن
- پیام های میوت شده درجا پاک میشوند
-فیلتر کردن صدا.تصاورمتحرک. عکس .فیلم در سوپر گروه
-!mute [all|audio|gifs|photo|video|service]
-غیر فعال کردن فیلتر صدا.تصاویرمتحرک.عکس .فیلم
-!unmute [all|audio|gifs|photo|video|service]
+🔇میوت (خفه) کردن
+🗑 پیام های میوت شده درجا پاک میشوند
+میوت کردن صدا.تصاورمتحرک. عکس .فیلم در سوپر گروه
+ !mute [all|audio|gifs|photo|video|service]
+غیر فعال کردن میوت صدا.تصاویرمتحرک.عکس .فیلم
+ !unmute [all|audio|gifs|photo|video|service]
 🔢تغيير حساسيت ضد اسپم:ست کردن تعداد پیام های پشت سر هم تا یوزر کیک شود
-!setflood [5-25]
-مثلا اگر 10 باشد, فردی 10 پیام پشت هم بفرستد, کیک میشود.
-⚙ دریافت لیست تنظیمات گروه
-!settings
+ !setflood [5-25]
+🔎🔍مثلا اگر 10 باشد, فردی 10 پیام پشت هم بفرستد, کیک میشود.
+⬇️:⚙دریافت لیست تنظیمات گروه⚙
+ !settings
 🤐میوت کردن یه کاربر در سوپر گروه
 ⚠️اگر کاربر میوت شد پیغام بفرستد پیغام ان پاک می شود⚠️
  !silent [username]
- مشاهد لیست افراد بیصدا
+ 😶مشاهد لیست افراد بیصدا
  !mutelist
-بیصدا کردن شخص در گروه
-!silent [username]
-لیست افراد بیصدا
+🤐بیصدا کردن شخص در گروه
+ !silent [username]
 🚸مشاهده لیست مسدود شده ها
-!banlist
-❌پاک کردن [مدیران ,قوانین ,متن گروه,لیست بیصداها, لیست کلمات غیرمجاز,لیست افراد مصدود شد]
-!clean [rules|about|modlist|silentlist|badwords|banlist]
+ !banlist
+❌ پاک کردن(مدیران ,قوانین ,متن گروه,لیست بیصداها, لیست کلمات غیرمجاز,لیست افراد مصدود شد)
+ !clean [rules|about|modlist|silentlist|badwords|banlist]
 پاک کردن پیام با ریپلی
-!del
+ !del
 ✅ دريافت آمار در قالب متن
-!stats
+ !stats
 همگانی کردن گروه
-!public [yes|no]
+ !public [yes|no]
 ♻️ دريافت يوزر آی دی یک کاربر
-!res [یوزنیم]
+ !res [یوزنیم]
 🚸 دريافت گزارشات گروه
-!log
- دريافت ليست کاربران بن شده
-!banlist
-🔧نمایش لیست ابزارها
-!abzar
+ !log
+📥 دريافت ليست کاربران بن شده
+ !banlist
+🔧نمایش لیست ابزارهای گروه
+ !abzar
 ➖➖➖➖➖➖➖➖➖
 ⛔️فیلترینگ کردن کلمات⛔️
 نحوهی اضافه کردن کلمه
-!addword [کلمه]
+ !addword [کلمه]
 نحوهی پاک کردن کلمه
-!remword [کلمه]
+ !remword [کلمه]
 مشاهدی لیست کلمات فیلتر شد
-!badwords
+ !badwords
 پاک کردن لیست کلمات فیلتر شده
-!clearbadwords
-💬 توضيحات ضد اسپم
-🔍 ودریافت لینک گروه پشتیبانی
-!turbo
+ !clearbadwords
+💬 توضيحات ضد اسپم و دریافت لینک گروه پشتیبانی
+ !turbo
 📢 ارتباط با پشتیبانی ربات
-!feedback [متن پیام]
+ !feedback [متن پیام]
 👤 اضافه کردن ادمین ربات به گروه
-!invite @armanturbo
-هشدار:درصورت سواستفاده از دستورفوق گروه توقیف
-⚠می شود
+ !invite @armanturbo
+⚠️هشدار:درصورت سواستفاده از دستورفوق گروه توقیف
+می شود⚠️
 ➖➖➖➖➖➖➖➖➖
 ⚠️ هرگونه سوال یا مشکل در ربات
 را از طریق دستور فیدبک برای مدیران
 ربات ارسال و منتظر جواب باشید.
-!feedback [متن سوال یا مشکل]
+ !feedback [متن سوال یا مشکل]
 ⚠️  شما ميتوانيد از ! و / استفاده کنيد. 
 ⚠️  تنها مديران ميتوانند ربات ادد کنند. 
 ⚠️  تنها معاونان و مديران ميتوانند 
