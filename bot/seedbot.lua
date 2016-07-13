@@ -509,7 +509,7 @@ will return group ban list
 SuperGroup Commands:
 
  !gpinfo
-Ⓜ️ دریافت اطلاعات سوپرگروه 
+Ⓜ️  دریافت اطلاعات سوپرگروه 
  !admins
 👥دریافت لیست ادمین های سوپرگروه 
  !owner
