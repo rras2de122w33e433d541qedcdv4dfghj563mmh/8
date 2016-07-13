@@ -557,12 +557,12 @@ SuperGroup Commands:
  !linkpv
 📜 دریافت قوانین گروه
  !rules
-⬇️:⚙قفل کردن تنظیمات⚙
+⚙قفل کردن تنظیمات⚙
 🔒قفل لینک ، فلود ، اسپم و ...
  !lock [links|flood|spam|Arabic|member|rtl|sticker|contacts|strict|tag|username|fwd|reply|fosh|tgservice|leave|join|emoji|english|media|operator]
 *RTL = راست چین (پیام های از راست به چپ)
 *strict: enable strict settings enforcement (violating user will be kicked)*
-⬇️:⚙ازکردن قفل تنظیمات گروه⚙
+⚙بازکردن قفل تنظیمات گروه⚙
 🔓 باز کردن قفل لینک ، فلود ، اسپم و ...
  !unlock [links|flood|spam|Arabic|member|rtl|sticker|contacts|strict|tag|username|fwd|reply|fosh|tgservice|leave|join|emoji|english|media|operator]
 *RTL = راست چین (پیام های از راست به چپ)
@@ -631,7 +631,7 @@ SuperGroup Commands:
 ⚠️  تنها مديران ميتوانند ربات ادد کنند. 
 ⚠️  تنها معاونان و مديران ميتوانند 
 جزييات مديريتی گروه را تغيير دهند.
-🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹
+🔹🔹🔹🔹🔹🔹🔹🔹🔹
 
 ]],
   }
