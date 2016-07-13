@@ -217,6 +217,7 @@ function create_config( )
     "ingroup",
     "inpm",
     "banhammer",
+    "stats",
     "anti_spam",
     "owners",
     "arabic_lock",
@@ -231,6 +232,7 @@ function create_config( )
     "msg_checks",
     "plugins",
     "addplugin",
+    "filter",
     "linkpv",
     "lock_emoji",
     "lock_english",
@@ -239,142 +241,121 @@ function create_config( )
     "lock_join",
     "lock_media",
     "lock_operator",
+    "lock_username",
     "lock_tag",
     "lock_reply",
+    "rmsg",
     "send",
     "set_type",
-    "setwlc",
+    "welcome",
     "sh",
-    "serverinfo",
-    "lock_username",
-    "delpm",
-    "warn",
-    "gitpull",
-    "nerkh",
-    "ping",
-    "Abjad",
-    "ziba",
-    "arz",
-    "logo",
-    "off_on",
-    "feedback",
-    "fwd",
-    "abzar",
-    "tr",
-    "wiki",
-    "calc",
-    "voice",
-    "time",
-    "mean",
-    "tagall",
-    "textSticker",
-    "qr",
-    "stats",
-    "azan",
-    "sticker-photo",
-    "music",
-    "Weather",
-    "github",
-    "badword",
-    "Turbo"
+    "serverinfo"
     },
-    sudo_users = {132472033,120518968},--Sudo users
+    sudo_users = {80182995},--Sudo users
     moderation = {data = 'data/moderation.json'},
-    about_text = [[Turbo Anti Spam BoT V5
-    
-👤SoduBOT
-@ArmanTurbo
-@Xx_AE_xX
+    about_text = [[MeGa shield v2.9
+An advanced administration bot based on TG-CLI written in Lua
 
-📢 Channel : soon!
+Github:
+https://github.com/hafez16/mega-shield
 
-👤Admins
-@...
-@...
+Admins:
+@hafez1116hafez [Developer]
+@amirho3ien911 [Developer]
+@Eblis_alone [Manager]
+@Mmd_hei [sponsor]
 
-🙏Special thanks to
-Arman-Turbo [Developer] & [Manager] & [Founder]
-Amir-viper [Developer] & [designer]
-Dead [designer] & [Admin]
-Turbo ™
+Special thanks to
+SEEDTEAM
+Hextor team
+Magic team
+Avira team
 
-📝 Please send your feedback
-The command /feedback [text]
-
-Checkout yeo.ir/TurboBoT
+Our channels
+@shieldTM [persian]
 ]],
     help_text_realm = [[
 Realm Commands:
 
 !creategroup [Name]
- ساختن گروه 
-〰〰〰〰〰〰〰〰
+Create a group
+
 !createrealm [Name]
-ساختن گروه مادر
-〰〰〰〰〰〰〰〰
+Create a realm
+
 !setname [Name]
-عوض کردن اسم گروه مادر
-〰〰〰〰〰〰〰〰
+Set realm name
+
 !setabout [group|sgroup] [GroupID] [Text]
- عوض کردن متن درباره ی گروه یا سوپرگروه 
-〰〰〰〰〰〰〰〰
+Set a group's about text
+
 !setrules [GroupID] [Text]
-قانون گذاری برای یک گروه
-〰〰〰〰〰〰〰〰
+Set a group's rules
+
 !lock [GroupID] [setting]
- قفل کردن تنظیمات یک گروه 
-〰〰〰〰〰〰〰〰
+Lock a group's setting
+
 !unlock [GroupID] [setting]
-باز کردن تنظیمات یک گروه 
-〰〰〰〰〰〰〰〰
+Unock a group's setting
+
 !settings [group|sgroup] [GroupID]
- مشاهده تنظیمات یک گروه یا سوپرگروه 
-〰〰〰〰〰〰〰〰
+Set settings for GroupID
+
 !wholist
-مشاهده لیست اعضای گروه یا گروه مادر
-〰〰〰〰〰〰〰〰
+Get a list of members in group/realm
+
 !who
-دریافت فایل اعضای گروه یا گروه مادر
-〰〰〰〰〰〰〰〰
+Get a file of members in group/realm
+
 !type
- مشاهده ی نوع گروه 
-〰〰〰〰〰〰〰〰
+Get group type
+
 !kill chat [GroupID]
- پاک کردن یک گروه و اعضای آن 
-〰〰〰〰〰〰〰〰
+Kick all memebers and delete group
+
 !kill realm [RealmID]
- پاک کردن یک گروه مادر و  اعضای آن 
-〰〰〰〰〰〰〰〰
+Kick all members and delete realm
+
 !addadmin [id|username]
- ادمین کردن یک شخص در ربات (فقط برای سودو) 
-〰〰〰〰〰〰〰〰
+Promote an admin by id OR username *Sudo only
+
 !removeadmin [id|username]
- پاک کردن یک شخص از ادمینی در ربات (فقط برای سودو) 
-〰〰〰〰〰〰〰〰
+Demote an admin by id OR username *Sudo only
+
 !list groups
- مشهاده لیست گروه های ربات به همراه لینک آنها 
-〰〰〰〰〰〰〰〰
+Get a list of all groups
+
 !list realms
- مشاهده لیست مقرهای فرماندهی به همراه لینک آنها 
-〰〰〰〰〰〰〰〰
+Get a list of all realms
+
 !support
- افزودن شخص به پشتیبانی 
-〰〰〰〰〰〰〰〰
+Promote user to support
+
 !-support
- پاک کردن شخص از پشتیبانی 
-〰〰〰〰〰〰〰〰
+Demote user from support
+
 !log
-دریافت ورود اعضا به گروه یا گروه مادر
-〰〰〰〰〰〰〰〰
+Get a logfile of current group or realm
+
 !broadcast [text]
 !broadcast Hello !
- ارسال متن به همه گروه های ربات (فقط مخصوص سودو) 
-〰〰〰〰〰〰〰〰
+Send text to all groups
+Only sudo users can run this command
+
 !bc [group_id] [text]
 !bc 123456789 Hello !
- ارسال متن به یک گروه مشخص 
-〰〰〰〰〰〰〰〰
- شما میتوانید از / و ! و # استفاده کنید
+This command will send text to [group_id]
+
+
+**You can use "#", "!", or "/" to begin all commands
+
+
+*Only admins and sudo can add bots in group
+
+
+*Only admins and sudo can use kick,ban,unban,newlink,setphoto,setname,lock,unlock,set rules,set about and settings commands
+
+*Only admins and sudo can use res, setowner, commands
 ]],
     help_text = [[
 Commands list :
@@ -506,7 +487,161 @@ will return group ban list
 
 ]],
 	help_text_super =[[
+SuperGroup Commands:
 
+!gpinfo
+Displays general info about the SuperGroup
+
+!admins
+Returns SuperGroup admins list
+
+!owner
+Returns group owner
+
+!modlist
+Returns Moderators list
+
+!bots
+Lists bots in SuperGroup
+
+!who
+Lists all users in SuperGroup
+
+!block
+Kicks a user from SuperGroup
+*Adds user to blocked list*
+
+!kick
+Kicks a user from SuperGroup
+*Adds user to blocked list*
+
+!ban
+Bans user from the SuperGroup
+
+!unban
+Unbans user from the SuperGroup
+
+!id
+Return SuperGroup ID or user id
+*For userID's: !id @username or reply !id*
+
+!id from
+Get ID of user message is forwarded from
+
+!kickme
+Kicks user from SuperGroup
+*Must be unblocked by owner or use join by pm to return*
+
+!setowner
+Sets the SuperGroup owner
+
+!promote [username|id]
+Promote a SuperGroup moderator
+
+!demote [username|id]
+Demote a SuperGroup moderator
+
+!setname
+Sets the chat name
+
+!setphoto
+Sets the chat photo
+
+!setrules
+Sets the chat rules
+
+!setabout
+Sets the about section in chat info(members list)
+
+!save [value] <text>
+Sets extra info for chat
+
+!get [value]
+Retrieves extra info for chat by value
+
+!newlink
+Generates a new group link
+
+!link
+Retireives the group link
+
+!rules
+Retrieves the chat rules
+
+!lock [links|flood|spam|Arabic|member|rtl|sticker|contacts|strict|tag|username|fwd|reply|fosh|tgservice|leave|join|emoji|english|media|operator]
+Lock group settings
+*rtl: Delete msg if Right To Left Char. is in name*
+*strict: enable strict settings enforcement (violating user will be kicked)*
+*fosh: Delete badword msg*
+*fwd: Delete forward msg*
+
+!unlock [links|flood|spam|Arabic|member|rtl|sticker|contacts|strict|tag|username|fwd|reply|fosh|tgservice|leave|join|emoji|english|media|operator]
+Unlock group settings
+*rtl: Delete msg if Right To Left Char. is in name*
+*strict: disable strict settings enforcement (violating user will not be kicked)*
+
+!mute [all|audio|gifs|photo|video|service]
+mute group message types
+*A "muted" message type is auto-deleted if posted
+
+!unmute [all|audio|gifs|photo|video|service]
+Unmute group message types
+*A "unmuted" message type is not auto-deleted if posted
+
+!setflood [value]
+Set [value] as flood sensitivity
+
+!type [name]
+set type for supergroup
+
+!settings
+Returns chat settings
+
+!mutelist
+Returns mutes for chat
+
+!silent [username]
+Mute a user in chat
+*If a muted user posts a message, the message is deleted automaically
+*only owners can mute | mods and owners can unmute
+
+!silentlist
+Returns list of muted users in chat
+
+!banlist
+Returns SuperGroup ban list
+
+!clean [rules|about|modlist|silentlist|filterlist]
+
+!del
+Deletes a message by reply
+
+!filter [word]
+bot Delete word if member send
+
+!unfilter [word]
+Delete word in filter list
+
+!filterlist
+get filter list
+
+!clean msg [value]
+
+!public [yes|no]
+Set chat visibility in pm !chats or !chatlist commands
+
+!res [username]
+Returns users name and id by username
+
+!log
+Returns group logs
+*Search for kick reasons using [#RTL|#spam|#lockmember]
+
+**You can use "#", "!", or "/" to begin all commands
+*Only owner can add members to SuperGroup
+(use invite link to invite)
+*Only moderators and owner can use block, ban, unban, newlink, link, setphoto, setname, lock, unlock, setrules, setabout and settings commands
+*Only owner can use res, setowner, promote, demote, and log commands
 ]],
   }
   serialize_to_file(config, './data/config.lua')
