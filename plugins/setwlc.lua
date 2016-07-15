@@ -1,55 +1,60 @@
+do
 local function run(msg, matches, callback, extra)
-
 local data = load_data(_config.moderation.data)
-
-local group_welcome = data[tostring(msg.to.id)]['group_welcome']
--------------------------- Data Will be save on Moderetion.json
-    
+local rules = data[tostring(msg.to.id)]['rules']
+local about = data[tostring(msg.to.id)]['description']
+local hash = 'group:'..msg.to.id
+local group_welcome = redis:hget(hash,'welcome')
 if matches[1] == 'delwlc' and not matches[2] and is_owner(msg) then 
     
-   data[tostring(msg.to.id)]['group_welcome'] = nil --delete welcome
-        save_data(_config.moderation.data, data)
-        
-        return 'Group welcome Deleted!'
-end
-if not is_owner(msg) then 
-    return 'For Owners Only!'
-end
---------------------Loading Group Rules
-local rules = data[tostring(msg.to.id)]['rules']
-    
-if matches[1] == 'rules' and matches[2] and is_owner(msg) then
-    if data[tostring(msg.to.id)]['rules'] == nil then --when no rules found....
-        return 'No Rules Found!\n\nSet Rule first by /set rules [rules]\nOr\nset normal welcome by /setwlc [wlc msg]'
-end
-data[tostring(msg.to.id)]['group_welcome'] = matches[2]..'\n\nGroup Rules :\n'..rules
-        save_data(_config.moderation.data, data)
-        
-        return 'Group welcome Seted To :\n'..matches[2]
-end
-if not is_owner(msg) then 
-    return 'For Owners Only!'
+   redis:hdel(hash,'welcome')
+        return 'متن خوش آمد گویی پاک شد 🗑'
 end
 
-if matches[1] and is_owner(msg) then
-    
-data[tostring(msg.to.id)]['group_welcome'] = matches[1]
-        save_data(_config.moderation.data, data)
-        
-        return 'Group welcome Seted To : \n'..matches[1]
-end
-if not is_owner(msg) then 
-    return 'For Owners Only!'
+local url , res = http.request('http://api.gpmod.ir/time/')
+if res ~= 200 then return "No connection" end
+local jdat = json:decode(url)
+
+if matches[1] == 'setwlc' and is_owner(msg) then
+redis:hset(hash,'welcome',matches[2])
+        return 'متن خوش آمد گویی گروه تنظیم شد به : ✋\n'..matches[2]
 end
 
+if matches[1] == 'chat_add_user' or 'chat_add_user_link' or 'channel_invite' and msg.service then
+group_welcome = string.gsub(group_welcome, '{gpname}', msg.to.title)
+group_welcome = string.gsub(group_welcome, '{firstname}', ""..(msg.action.user.first_name or '').."")
+ group_welcome = string.gsub(group_welcome, '{lastname}', ""..(msg.action.user.last_name or '').."")
+  group_welcome = string.gsub(group_welcome, '{username}', "@"..(msg.action.user.username or '').."")
+  group_welcome = string.gsub(group_welcome, '{fatime}', ""..(jdat.FAtime).."")
+  group_welcome = string.gsub(group_welcome, '{entime}', ""..(jdat.ENtime).."")
+  group_welcome = string.gsub(group_welcome, '{fadate}', ""..(jdat.FAdate).."")
+  group_welcome = string.gsub(group_welcome, '{endate}', ""..(jdat.ENdate).."")
+  group_welcome = string.gsub(group_welcome, '{rules}', ""..(rules or '').."")
+  group_welcome = string.gsub(group_welcome, '{about}', ""..(about or '').."")
 
-    
+
+
+
+group_welcome = string.gsub(group_welcome, '{نام گروه}', msg.to.title)
+group_welcome = string.gsub(group_welcome, '{نام اول}', ""..(msg.action.user.first_name or '').."")
+ group_welcome = string.gsub(group_welcome, '{نام آخر}', ""..(msg.action.user.last_name or '').."")
+  group_welcome = string.gsub(group_welcome, '{نام کاربری}', "@"..(msg.action.user.username or '').."")
+  group_welcome = string.gsub(group_welcome, '{ساعت فارسی}', ""..(jdat.FAtime).."")
+  group_welcome = string.gsub(group_welcome, '{ساعت انگلیسی}', ""..(jdat.ENtime).."")
+  group_welcome = string.gsub(group_welcome, '{تاریخ فارسی}', ""..(jdat.FAdate).."")
+  group_welcome = string.gsub(group_welcome, '{تاریخ انگلیسی}', ""..(jdat.ENdate).."")
+
+ end
+return group_welcome
 end
 return {
   patterns = {
-  "^[!#/]setwlc (rules) +(.*)$",
-  "^[!#/]setwlc +(.*)$",
-  "^[!#/](delwlc)$"
+  "^[!#/](setwlc) +(.*)$",
+  "^[!#/](delwlc)$",
+  "^!!tgservice (chat_add_user)$",
+  "^!!tgservice (channel_invite)$",
+  "^!!tgservice (chat_add_user_link)$",
   },
   run = run
 }
+end
