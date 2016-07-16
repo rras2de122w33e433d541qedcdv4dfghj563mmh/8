@@ -20,7 +20,7 @@ redis:hset(hash,'welcome',matches[2])
         return 'متن خوش آمد گویی گروه تنظیم شد به : ✋\n'..matches[2]
 end
 
-if matches[1] == ‘chat_add_user’ and ‘chat_add_user_link’ and ‘channel_invite’ and msg.service then
+if matches[1] == 'chat_add_user' and 'chat_add_user_link' and 'channel_invite' and msg.service then
 group_welcome = string.gsub(group_welcome, '{gpname}', msg.to.title)
 group_welcome = string.gsub(group_welcome, '{firstname}', ""..(msg.action.user.first_name or '').."")
  group_welcome = string.gsub(group_welcome, '{lastname}', ""..(msg.action.user.last_name or '').."")
