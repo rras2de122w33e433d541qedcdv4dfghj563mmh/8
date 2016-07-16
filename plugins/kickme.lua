@@ -7,9 +7,9 @@ local hash = 'kick:'..msg.to.id..':'..msg.from.id
 
     if msg.text then
 	local hash = 'kick:'..msg.to.id..':'..msg.from.id
-      if msg.text:match("^yes$") and redis:get(hash) == "waite" then
+      if msg.text:match("^!yes$") and redis:get(hash) == "waite" then
 	  redis:set(hash, "ok")
-	elseif msg.text:match("^no$") and redis:get(hash) == "waite" then
+	elseif msg.text:match("^!no$") and redis:get(hash) == "waite" then
 	send_large_msg(get_receiver(msg), "کرم داری ؟ ")
 	  redis:del(hash, true)
 
@@ -27,8 +27,8 @@ local hash = 'kick:'..msg.to.id..':'..msg.from.id
 return {
   patterns = {
   "kickme",
-  "^yes$",
-  "^no$"
+  "^!yes$",
+  "^!no$"
   },
   run = run,
 }
