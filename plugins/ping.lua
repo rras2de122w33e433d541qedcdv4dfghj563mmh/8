@@ -1,8 +1,19 @@
 do
+
 function run(msg, matches)
-  return [[انلاینم اصلا به تو چه من انلاینم یا افلاین😐]]
-  end
+if is_sudo(msg) then
+  return "I am online ͡° ͜ʖ ͡°"
+else
+return "انلاینم اصلا به تو چه من انلاینم یا افلاین😐"
+end
+end
 return {
-  patterns = {"^[Pp]ing","^[!@#]ping"},
-  run = run}
+  description = "", 
+  usage = "",
+  patterns = {
+    "^[Pp][Ii][Nn][Gg]",
+    "^[!@/#][Pp][Ii][Nn][Gg]",
+  },
+  run = run
+}
 end
