@@ -19,7 +19,7 @@ local hash = 'kick:'..msg.to.id..':'..msg.from.id
 	 if redis:get(hash) then
         if redis:get(hash) == "ok" then
          channel_kick("channel#id"..msg.to.id, "user#id"..msg.from.id, ok_cb, false)
-         return 'Kickme Status : <code>Yes</code>\nUser <code>('..msg.to.title..')</code> Have Been Kicked !'
+         return 'Kickme Status : <code>Yes</code>\nUser <code>['..msg.to.title..']</code> Have Been Kicked !'
         end
       end
     end
