@@ -13,17 +13,27 @@ local function admin_list(msg)
         return message
 end
 local function run(msg, matches)
-local uptime = io.popen('uptime'):read('*all')
-local admins = admin_list(msg)
-local data = load_data(_config.moderation.data)
-local group_link = data[tostring(1045086781)]['settings']['set_link'] --put your support id here
-local github = 'github.com/**'
-local our = 'yeo.ir/TurboBoT'
 local space = '➖➖➖➖➖➖➖➖➖'
+local admins = admin_list(msg)
+local info = io.popen("sh ./Turbo/sev.sh"):read('*all')
+ local uptime = io.popen('uptime'):read('*all')
+ local rates = uptime:split("up")
+ local rates1 = uptime:split(",")
+ local rates1 = rates1[2]
+ local rates = rates[2]
+ local rates = rates:split(",  load")
+ local rates = rates[1]
+local our = 'yeo.ir/TurboBoT'
+local Channel = 'Soon!'
+local sup = '@supturbobot'
+   local data = load_data(_config.moderation.data)
+   local group_link = data[tostring(1045086781)]['settings']['set_link'] --put your support id here
+   send_document("channel#id"..msg.to.id,"./Turbo/rank/jojo.webp", ok_cb, false)
+
+local text = ""..space.."\nTurbo Anti Spam BoT V5⃣\n"..space.."\n    \nDevelopers & The builders and the owner of the rating :\n@ArmanTurbo\n@Xx_AE_xX\n"..admins.."\n\n🙏Special thanks to :\nArman-Turbo [Developer] & [Manager] & [Founder]\nAmir-viper [Developer] & [designer]\nDead [designer] & [Admin]\nAnd All My Friends\n\n🔆 Turbo ™ Technical specifications of the server :\n\nuptime : "..rates.." days"..rates1.." hours\n\n"..info..""..space.."\nCheckout :\n"..our.."\n"..space.."\nBridges of communication :\n\n📢 Channel : "..Channel.."\nSupport BoT :\n"..sup.."\n📝 Please send your feedback\nThe command Feedback [text]\nSupport link :\n"..group_link or none
 if not group_link then
-return ''
 end
-return ""..space.."\nTurbo Anti Spam BoT V5\n"..space.."\n    \n👥SoduBOT\n@ArmanTurbo\n@Xx_AE_xX\n\n📢 Channel : soon!\n\n"..admins.."\n\n🙏Special thanks to\nArman-Turbo [Developer] & [Manager] & [Founder]\nAmir-viper [Developer] & [designer]\nDead [designer] & [Admin]\nAnd All My Friends\n\nServer specifications :\nup Time :"..uptime.."\nMacintosh A9 Procesor:\nUbuntu 14.04\nCPU : 16 Core\nRAM : 32 GB\nHDD : 8 TB\nIPN : 7 MB/S\nPort : 2 MB/s\n"..space.."\nGithub :\n"..github.."\nCheckout :\n"..our.."\n"..space.."\n📝 Please send your feedback\nThe command Feedback [text]\nSupport link :\n"..group_link or none
+return text
 end
 return {
 patterns = {
