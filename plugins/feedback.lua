@@ -28,7 +28,7 @@ return {
 		"feedback (pm) : ارسال نظر به سودو",
 	},
 	patterns = {
-		"^[Ff]eedback (.*)$",
+	"^[Ff]eedback (.*)$",
         "^[#!/]feedback (.*)$",
 	},
 	run = run,
