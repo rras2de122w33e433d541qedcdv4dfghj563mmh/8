@@ -507,7 +507,6 @@ will return group ban list
 
 ]],
 	help_text_super =[[
-
 SuperGroup Commands:
 
  !gpinfo
