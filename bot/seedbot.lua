@@ -263,7 +263,7 @@ function create_config( )
     "tr",
     "wiki",
     "calc",
-    "voice",
+    "tts",
     "time",
     "mean",
     "tagall",
