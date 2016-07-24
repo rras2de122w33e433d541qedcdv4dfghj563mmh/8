@@ -8,7 +8,7 @@ local function admin_list(msg)
         end
         local message = '👥Admins :\n'
         for k,v in pairs(data[tostring(admins)]) do
-                message = message .. '> @' .. v .. ' [' .. k .. '] ' ..'\n'
+                message = message .. '>🏅 @' .. v .. ' [' .. k .. '] ' ..'\n'
         end
         return message
 end
