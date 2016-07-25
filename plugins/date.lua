@@ -14,8 +14,8 @@ end
 return {
   usage = "/date : نمایش",
   patterns = {
-    "^[#!/][Dd][Aa][Tt][Ee]$"
-     "^[Dd][Aa][Tt][Ee]$"
+    "^[#!/][Dd][Aa][Tt][Ee]$",
+     "^[Dd][Aa][Tt][Ee]$",
     
   },
   run = run
