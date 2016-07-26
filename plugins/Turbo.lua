@@ -32,6 +32,7 @@ local sup = '@supturbobot'
 	if not group_link then
 		group_link = "[none]"
 	end
+--send_document("channel#id"..msg.to.id,"./Turbo/rank/jojo.webp", ok_cb, false)
 
 local text = ""..space.."\nTurbo Anti Spam BoT V5⃣\n"..space.."\n    \nDevelopers & The builders and the owner of the rating :\n@ArmanTurbo\n@Xx_AE_xX\n"..admins.."\n\n🙏Special thanks to :\nArman-Turbo [Developer] & [Manager] & [Founder]\nAmir-viper [Developer] & [designer]\nDead [designer] & [Admin]\nAnd All My Friends\n\n🔆 Turbo ™ Technical specifications of the server :\n\nuptime : "..rates.." days"..rates1.." hours\n\n"..info..""..space.."\nCheckout :\n"..our.."\n"..space.."\nBridges of communication :\n\n📢 Channel : "..Channel.."\nSupport BoT :\n"..sup.."\n📝 Please send your feedback\nThe command Feedback [text]\nSupport link :\n"..group_link
 return text
