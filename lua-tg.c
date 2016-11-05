@@ -13,8 +13,7 @@
 
     You should have received a copy of the GNU General Public License
     along with this telegram-cli.  If not, see <http://www.gnu.org/licenses/>.
-
-    Copyright Vitaly Valtman 2013-2015
+    Copyright  @Valtman 2013-2015
 */
 
 #ifdef HAVE_CONFIG_H
@@ -660,7 +659,7 @@ void lua_chat_update (struct tgl_chat *C, unsigned flags) {
 //extern tgl_peer_t *Peers[];
 //extern int peer_num;
 
-#define MAX_LUA_COMMANDS 1000
+#define MAX_LUA_COMMANDS 100000
 
 struct lua_arg {
   int flags;
@@ -718,6 +717,7 @@ enum lua_query_type {
   lq_create_group_chat,
   lq_send_audio,
   lq_send_document,
+  lq_send_document2,
   lq_send_file,
   lq_load_audio,
   lq_load_document,
@@ -753,6 +753,15 @@ enum lua_query_type {
   lq_channel_set_username,
   lq_channel_set_admin,
   lq_channel_set_mod,
+  lq_reply_location,
+  lq_reply_audio,
+  lq_reply_document,
+  lq_reply_file,
+  lq_reply_photo,
+  lq_reply_photo2,
+  lq_block_user,
+  lq_unblock_user,
+  lq_reply_video,
   lq_channel_demote
 };
 
@@ -1263,6 +1272,10 @@ void lua_do_all (void) {
       tgl_do_send_document (TLS, lua_ptr[p + 1].peer_id, lua_ptr[p + 2].str, NULL, 0, 0, lua_msg_cb, lua_ptr[p].ptr);
       p += 3;
       break;
+	case lq_send_document2:
+		tgl_do_send_document(TLS, lua_ptr[p + 1].peer_id, lua_ptr[p + 2].str, lua_ptr[p + 3].str, strlen(lua_ptr[p + 3].str), 0, lua_msg_cb, lua_ptr[p].ptr);
+		p += 3;
+		break;
     case lq_send_file:
       tgl_do_send_document (TLS, lua_ptr[p + 1].peer_id, lua_ptr[p + 2].str, NULL, 0, TGL_SEND_MSG_FLAG_DOCUMENT_AUTO, lua_msg_cb, lua_ptr[p].ptr);
       p += 3;
@@ -1275,6 +1288,37 @@ void lua_do_all (void) {
       tgl_do_set_chat_photo (TLS, lua_ptr[p + 1].peer_id, lua_ptr[p + 2].str, lua_empty_cb, lua_ptr[p].ptr);
       p += 3;
       break;
+	case lq_reply_audio:
+		tgl_do_reply_document(TLS, &lua_ptr[p + 1].msg_id, lua_ptr[p + 2].str, NULL, 0, TGL_SEND_MSG_FLAG_DOCUMENT_AUDIO, lua_msg_cb, lua_ptr[p].ptr);
+		p += 3;
+		break;
+	case lq_reply_document:
+		tgl_do_reply_document(TLS, &lua_ptr[p + 1].msg_id, lua_ptr[p + 2].str, NULL, 0, 0, lua_msg_cb, lua_ptr[p].ptr);
+		p += 3;
+		break;
+	case lq_reply_file:
+		tgl_do_reply_document(TLS, &lua_ptr[p + 1].msg_id, lua_ptr[p + 2].str, NULL, 0, TGL_SEND_MSG_FLAG_DOCUMENT_AUTO, lua_msg_cb, lua_ptr[p].ptr);
+		p += 3;
+		break;
+	case lq_reply_location: // TODO - I DON'T UNDERSTAND WHY IT'S NOT WORKING
+		tgl_do_reply_location(TLS, &lua_ptr[p + 1].msg_id, lua_ptr[p + 2].dnum, lua_ptr[p + 3].dnum, 0, lua_msg_cb, lua_ptr[p].ptr);
+		p += 4;
+		break;
+	case lq_reply_photo:
+		tgl_do_reply_document(TLS, &lua_ptr[p + 1].msg_id, lua_ptr[p + 2].str, NULL, 0, TGL_SEND_MSG_FLAG_DOCUMENT_PHOTO, lua_msg_cb, lua_ptr[p].ptr);
+		p += 3;
+		break;
+//tgl_do_send_document(TLS, lua_ptr[p + 1].peer_id, lua_ptr[p + 2].str, lua_ptr[p + 3].str, strlen(lua_ptr[p + 3].str), TGL_SEND_MSG_FLAG_DOCUMENT_PHOTO, lua_msg_cb, lua_ptr[p].ptr);
+
+	case lq_reply_photo2:
+		tgl_do_reply_document(TLS, &lua_ptr[p + 1].msg_id, lua_ptr[p + 2].str, lua_ptr[p + 3].str, strlen(lua_ptr[p + 3].str), TGL_SEND_MSG_FLAG_DOCUMENT_PHOTO, lua_msg_cb, lua_ptr[p].ptr);
+		p += 3;
+		break;
+	case lq_reply_video:
+		tgl_do_reply_document(TLS, &lua_ptr[p + 1].msg_id, lua_ptr[p + 2].str, NULL, 0, TGL_SEND_MSG_FLAG_DOCUMENT_VIDEO, lua_msg_cb, lua_ptr[p].ptr);
+		p += 3;
+		break;
+
     case lq_load_photo:
     case lq_load_video:
     case lq_load_audio:
@@ -1387,7 +1431,17 @@ void lua_do_all (void) {
     case lq_create_secret_chat:
       tgl_do_create_secret_chat (TLS, lua_ptr[p + 1].peer_id, lua_secret_chat_cb, lua_ptr[p].ptr);
       p += 2;
-      break;
+	  break;
+	case lq_block_user:
+		//tgl_do_block_user(TLS, lua_ptr[p + 1].peer_id, lua_empty_cb, lua_ptr[p].ptr);
+		tgl_do_block_user(TLS, lua_ptr[p + 1].peer_id, lua_empty_cb, lua_ptr[p].ptr);
+	  p += 2;
+	  break;
+	case lq_unblock_user:
+		//tgl_do_block_user(TLS, lua_ptr[p + 1].peer_id, lua_empty_cb, lua_ptr[p].ptr);
+		tgl_do_unblock_user(TLS, lua_ptr[p + 1].peer_id, lua_empty_cb, lua_ptr[p].ptr);
+		p += 2;
+		break;
     case lq_create_group_chat:
       tgl_do_create_group_chat (TLS, 1, &lua_ptr[p + 1].peer_id, LUA_STR_ARG (p + 2), lua_empty_cb, lua_ptr[p].ptr);
       p += 3;
@@ -1580,6 +1634,7 @@ struct lua_function functions[] = {
   {"send_video", lq_send_video, { lfp_peer, lfp_string, lfp_none }},
   {"send_audio", lq_send_audio, { lfp_peer, lfp_string, lfp_none }},
   {"send_document", lq_send_document, { lfp_peer, lfp_string, lfp_none }},
+  { "send_document2", lq_send_document, { lfp_peer, lfp_string, lfp_string, lfp_none } },
   {"send_file", lq_send_file, { lfp_peer, lfp_string, lfp_none }},
   {"send_text", lq_send_text, { lfp_peer, lfp_string, lfp_none }},
   {"chat_set_photo", lq_chat_set_photo, { lfp_chat, lfp_string, lfp_none }},
@@ -1642,6 +1697,17 @@ struct lua_function functions[] = {
   {"channel_set_admin", lq_channel_set_admin, { lfp_channel, lfp_peer, lfp_none }},
   {"channel_set_mod", lq_channel_set_mod, { lfp_channel, lfp_peer, lfp_none }},
   {"channel_demote", lq_channel_demote, { lfp_channel, lfp_peer, lfp_none }},
+  { "reply_msg", lq_reply, { lfp_msg, lfp_string, lfp_none } },
+  { "reply_file", lq_reply_file, { lfp_msg, lfp_string, lfp_none } },
+  { "reply_audio", lq_send_audio, { lfp_msg, lfp_string, lfp_none } },
+  { "reply_location", lq_reply_location, { lfp_msg, lfp_double, lfp_double, lfp_none } },
+  { "reply_document", lq_reply_document, { lfp_msg, lfp_string, lfp_none } },
+  { "reply_photo", lq_reply_photo, { lfp_msg, lfp_string, lfp_none } },
+  { "block_user", lq_block_user, { lfp_user, lfp_none } },
+  { "unblock_user", lq_unblock_user, { lfp_user, lfp_none } },
+  { "reply_photo2", lq_reply_photo, { lfp_msg, lfp_string, lfp_string, lfp_none } },
+  { "reply_video", lq_reply_video, { lfp_msg, lfp_string, lfp_none } },
+
   { 0, 0, { lfp_none}}
 };
 
